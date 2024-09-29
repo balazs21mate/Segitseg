@@ -1,0 +1,39 @@
+css: input
+
+:hover
+Matches when a user designates an item with a pointing device, such as holding the mouse pointer over the item.
+
+:active
+Matches when an item is being activated by the user. For example, when the item is clicked on.
+
+:focus
+Matches when an element has focus.
+
+a
+
+:link — :visited — :hover — :active.
+
+typescript: 
+
+npm install -g typescript
+
+tsc helloworld.ts
+
+angular: 
+
+ng new valami --no-standalone
+
+ng g c valami
+
+router:
+
+{ path: '', redirectTo: 'kektura', pathMatch: 'full' },
+  { path: 'kektura', component: KekturaComponent },
+  { path: '**', component: Hiba404Component },
+
+<a class="btn btn-success" routerLink="kektura">Kéktúra</a>
+
+
+
+
+
