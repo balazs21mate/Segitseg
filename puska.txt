@@ -33,6 +33,19 @@ router:
 
 <a class="btn btn-success" routerLink="kektura">Kéktúra</a>
 
+kereses:
+
+get kereses() {
+    if (this.keresoErtek) {
+      return this.kekturaAdatok.filter(
+        (data) =>
+          data.kiinduloPont.includes(this.keresoErtek) ||
+          data.vegPont.includes(this.keresoErtek)
+      );
+    } else {
+      return this.kekturaAdatok;
+    }
+
 
 
 
