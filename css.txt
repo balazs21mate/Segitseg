@@ -1,0 +1,276 @@
+/* Alap formázás minden pseudo class alkalmazására
+
+
+cssElem:pseudoTulajdonság {
+  tulajdonság: érték;
+}
+*/
+
+/*Pseudo osztályok csoportosítása, használat szerint:
+
+1) LINKEK
+[a:link] - Alapértelmezett link beállításai
+[a:visited] - Látogatott link beállításai
+[a:hover] - Link ami felé megyünk egérrel, beállításai
+[a:active] - Éppen kattintott link tulajdonságai
+*/
+a:link {
+	/*Alapértelmezett link beállításai kerülnek ide*/
+	color: red;
+	/*Az alapértelmezett link aláhúzott*/
+	font-size: 16px;
+	cursor: crosshair;
+}
+
+a:visited {
+	/*Látogatott link beállításai kerülnek ide(amire már kattintottunk)*/
+	color: green;
+	text-decoration: none;
+	cursor: e-resize;
+}
+
+a:hover {
+	/*Azok a linkek kerülnek ide, amik felé épp az egér kurzora került*/
+	color: blue;
+	cursor: help;
+}
+
+a:active {
+	/*A link kinézetét állíthatjuk be a kattintás pillanatában*/
+	color: yellow;
+	cursor: progress;
+}
+
+/*
+____________________________________________________________
+2) Bármi fölé megyünk egérrel
+[cssElem:hover] CssElem, ami felé az egér korzort helyezzük
+*/
+.simaDivElem {
+	width: 200px;
+	padding: 30px;
+	color: red;
+	background-color: black;
+}
+
+.simaDivElem:hover {
+	color: blue;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+/*
+____________________________________________________________
+3) Addott sorszámú elem, több elem esetén, listák táblázatok, egyéb elemek estén 
+
+[cssElem:first-child] - Legelső elem a sorban 
+[cssElem:last-child] - Legutolsó elem a sorban
+[cssElem:nth-child(even)] - páros elemek a sorban
+[cssElem:nth-child(odd)] - páratlan elemek a sorban
+[cssElem:nth-child(n)] - adott indexű elem a sorban
+*/
+ul li ol li:first-child {
+	/*Lista első elemének tulajdonsága*/
+	list-style-type: lower-latin;
+	/*Kisbetű beállítása*/
+}
+
+ul li ol li {
+	/*Alapértelmezett tulajdonság minden további elemre*/
+	list-style-type: lower-roman;
+	/*Kisbetű beállítása*/
+}
+
+ul li ol li:last-child {
+	/*Lista utolsó elemének tulajdonsága*/
+	list-style-type: decimal;
+	/*Kisbetű beállítása*/
+}
+
+
+/*
+____________________________________________________________
+4) Külünböző tulajdonsággal rendelkező űrlap elemek formázása
+
+[InputElem:checked] - Minden checked tulajdonsággal rendelkező input elem
+[InputElem:disabled] - Minden disabled tulajdonsággal rendelkező input elem
+[InputElem:enabled] - Minden enabled tulajdonsággal rendelkező input elem
+[InputElem:focus] - Minden focus-t kapott input elem(pl.: belekattintunk)
+[InputElem:in-range] - Megfelelő értékekkel rendelkező input elem(min-max segítségével beállított)
+[InputElem:invalid] - Minden NEM megfelelő értékekkel rendelkező input elem
+[InputElem:optional] - Minden required attribútum nélküli elem
+[InputElem:out-of-range] -NEM megfelelő értékekkel rendelkező input elem(min-max segítségével beállított)
+[InputElem:read-only] - Minden readonly tulajdonsággal rendelkező input elem
+[InputElem:read-write] - Minden NEM readonly tulajdonsággal rendelkező input elem
+[InputElem:required] - Minden required tulajdonsággal rendelkező input elem
+[InputElem:valid] - Minden megfelelő értékekkel rendelkező input elem
+stb...
+
+Továbi elemeket az alábbi linken találsz:
+
+https://www.w3schools.com/css/css_pseudo_classes.asp
+
+*/
+input {
+	display: block;
+	/*Az adott elemet blokk szintűvé állította, nem kell sortörés*/
+	margin: 10px;
+}
+
+input:focus {
+	background-color: black;
+	color: white;
+}
+
+input:required {
+	border: 1px solid red;
+}
+
+input:optional {
+	border: 1px solid green;
+}
+
+input:out-of-range {
+	color: red;
+}
+
+input:in-range {
+	color: blue;
+}
+
+input:read-only {
+	border: 3px solid grey;
+	color: grey;
+	font-weight: bold;
+}
+
+/*
+____________________________________________________________
+5) Pseudo elemek, általában adott CSS elemen belüli specifikus formázások beállítása
+
+[cssElem::first-line] - Addott CSS elem első sora, pl.: bekezdéseknél
+[cssElem::first-letter] - Addott CSS elem első betűje, pl.: bekezdéseknél (INICIÁLÉ készítés)
+[cssElem::before] - Adott CSS elem elé kerülő tartalom
+[cssElem::after] - Adott CSS elem mögé kerülő tartalom
+
+címsor elég kép kerülhet, a következő módon 
+h1::before {
+  content: url(kep.jpg);
+}
+
+[::marker] - Lista jelölő elemének formázása
+[::selection] - Adott rész kijelölésének beállításai
+
+*/
+p::first-line {
+	color: blue;
+}
+
+p::first-letter {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+p::selection {
+	background-color: black;
+	color: orange;
+}
+
+li::marker { /*Listajel módosítása*/
+	color: blue;
+	font-weight: bold;
+}
+
+/* Három féle lehetőségünk van színátmenetek megadására CSS-ben
+
+Linear(Egyenes vonalú)
+-jobbról balra
+-balról jobbra
+-átlósan
+
+Radial(Kör vagy elipszis alakú)
+- elipszis az alapértelmezett
+- "kör" vagy "elipszis" belsejéből külseje felé
+
+Conic(Kúp formájú)
+-központi pont körül
+-torta diagrammok készítésére is használhatjuk akár, bizonyos állítható verzióit
+*/
+
+/*Linear gradient(Egyenes vonalú színátmenet)*/
+.balrolJobbra{
+	background-image: linear-gradient(to right, blue , green);
+}
+.fentrolLefele{
+	background-image: linear-gradient(blue, green);
+}
+.keresztbeBalfelulrolJobbalulra{
+	background-image: linear-gradient(to bottom right, blue, green);
+}
+.szogetMegadva{
+	background-image: linear-gradient(60deg, blue,green);
+}
+.tobbSzinu{
+	background-image: linear-gradient(red,white,green);
+}
+.szivarvany{
+	background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+}
+.attetszo{
+	background-image: linear-gradient(rgba(0,0,255,0), rgba(0,255,0,1));
+}
+.ismetlodo{
+	background-image: repeating-linear-gradient(blue, green 25%);
+}
+
+
+/* Radiális (körkörös színátmenet*/
+.korkorosAlap{
+	background-image: radial-gradient(green, white, red);
+}
+.korkorosSzazalek{
+	background-image: radial-gradient(green 25%, white 25%, red 50%);
+}
+.korAlaku{
+	background-image: radial-gradient(circle, green, white, red);
+}
+.ismetlodoKorkoros{
+	background-image: repeating-radial-gradient(green, white, red 20%);
+}
+
+/*Arányokat is megadhatunk ha szeretnénk, erre van 4 lehetőségünk:
+
+[closest-side]
+[farthest-side]
+[closest-corner]
+[farthest-corner]
+
+pl.: 
+background-image: radial-gradient(closest-side at 60% 55%, green, white, red);
+*/
+
+/*Conic típusú (kúpos aka TortaDiagramm szerű*/
+.alapKupos{
+	background-image: conic-gradient(red, white, green);
+}
+.szivarvanySzinuKupos{
+background-image: conic-gradient(red,orange,yellow,green,blue,indigo,violet);
+}
+.kuposSzogekkel{
+	background-image: conic-gradient(red 60deg, white 240deg, green 60deg);
+}
+.tortaDiagramm{
+	background-image: conic-gradient(red 0deg, red 90deg, yellow 90deg, yellow 180deg, green 180deg, green 270deg, blue 270deg);
+	border-radius:50%;
+}
+.eltoltKozeppont{
+	background-image: conic-gradient(at 60% 45%, red, white, green);
+}
+.ismetlodoConic{
+	background-image: repeating-conic-gradient(blue, green 20%);
+}
+/*
+Színátmenet generátor: https://cssgradient.io/
+User Interface színátmenetek: https://uigradients.com/
+További színátmenet sémák: https://www.eggradients.com/
+*/
